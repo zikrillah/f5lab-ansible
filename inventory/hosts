@@ -1,5 +1,5 @@
 #[lb]
-f5 ansible_host=192.168.13.12 ansible_user=admin ansible_ssh_pass=aduh!!lupa
+f5 F5_SERVER=192.168.194.132 F5_USER=admin F5_PASSWORD=aduh!!lupa F5_SERVER_PORT=443
 
 [controller]
 ansible ansible_host=192.168.15.133 ansible_user=root

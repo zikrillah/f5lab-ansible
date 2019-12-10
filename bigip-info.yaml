@@ -1,5 +1,5 @@
 ---
-- name: GRAB F5 FACTS
+- name: GRAB F5 INFO
   hosts: f5
   connection: local
   gather_facts: no
@@ -7,15 +7,18 @@
 
   tasks:
 
-    - name: COLLECT BIG-IP FACTS
+    - name: COLLECT BIG-IP INFO
       bigip_device_info:
         gather_subset:
-         - system-info
+          - virtual-addresses
+          - system-info
+
+
         provider:
-          server: "{{ansible_host}}"
-          user: "{{ansible_user}}"
-          password: "{{ansible_ssh_pass}}"
-          server_port: 443
+          server: "{{F5_SERVER}}"
+          user: "{{F5_USER}}"
+          password: "{{F5_PASSWORD}}"
+          server_port: "{{F5_SERVER_PORT}}"
           validate_certs: no
       register: device_info
 

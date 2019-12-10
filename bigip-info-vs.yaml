@@ -1,0 +1,26 @@
+---
+- name: GRAB F5 INFO
+  hosts: f5
+  connection: local
+  gather_facts: no
+
+
+  tasks:
+
+    - name: COLLECT BIG-IP INFO
+      bigip_device_info:
+        gather_subset:
+          - virtual-servers
+
+
+        provider:
+          server: "{{F5_SERVER}}"
+          user: "{{F5_USER}}"
+          password: "{{F5_PASSWORD}}"
+          server_port: "{{F5_SERVER_PORT}}"
+          validate_certs: no
+      register: vs_info
+
+    - name: DISPLAY ONLY THE VIRTUAL SERVER LIST
+      debug:
+        var: vs_info['virtual_servers'][0]['name']
